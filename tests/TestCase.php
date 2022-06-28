@@ -30,7 +30,7 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
-     * @param  Application  $app
+     * @param Application $app
      *
      * @return array
      */
@@ -43,7 +43,7 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
-     * @param  Application  $app
+     * @param Application $app
      */
     protected function getEnvironmentSetUp($app)
     {
@@ -58,34 +58,34 @@ class TestCase extends OrchestraTestCase
             'default' => 'ots',
 
             /**
-             * default config
+             * default config.
              */
             'defaults' => [],
 
             'clients' => [
                 'ots' => [
-                    'driver' => 'ots',
-                    'connection' => 'ots',
-                    'table' => 'oauth_users',
+                    'driver'       => 'ots',
+                    'connection'   => 'ots',
+                    'table'        => 'oauth_users',
                     'openid_index' => 'oauth_users_openid_index',
                 ],
                 'database' => [
-                    'driver' => 'database',
+                    'driver'     => 'database',
                     'connection' => 'database',
-                    'table' => 'oauth_users',
+                    'table'      => 'oauth_users',
                 ],
             ],
         ]);
 
         $appConfig->set('database', [
-            'default' => env('DB_CONNECTION', 'ots'),
+            'default'     => env('DB_CONNECTION', 'ots'),
             'connections' => [
                 'ots' => [
-                    'driver' => 'ots',
-                    'EndPoint' => env('OTS_ENDPOINT'),
-                    'AccessKeyID' => env('OTS_ACCESS_KEY_ID'),
+                    'driver'          => 'ots',
+                    'EndPoint'        => env('OTS_ENDPOINT'),
+                    'AccessKeyID'     => env('OTS_ACCESS_KEY_ID'),
                     'AccessKeySecret' => env('OTS_ACCESS_KEY_SECRET'),
-                    'InstanceName' => env('OTS_INSTANCE_NAME'),
+                    'InstanceName'    => env('OTS_INSTANCE_NAME'),
                 ],
             ],
             'migrations' => 'migrations',
@@ -93,7 +93,7 @@ class TestCase extends OrchestraTestCase
     }
 
     /**
-     * @param  Application  $app
+     * @param Application $app
      */
     protected function setupCache(Application $app)
     {
@@ -102,10 +102,10 @@ class TestCase extends OrchestraTestCase
 
         $appConfig->set('cache', [
             'default' => 'default',
-            'stores' => [
+            'stores'  => [
                 'default' => [
                     'driver' => 'file',
-                    'path' => sprintf('/tmp/test/%s', md5(serialize([__METHOD__]))),
+                    'path'   => sprintf('/tmp/test/%s', md5(serialize([__METHOD__]))),
                 ],
             ],
         ]);
@@ -119,6 +119,7 @@ class TestCase extends OrchestraTestCase
     protected function assertNoException(callable $callable)
     {
         $exception = null;
+
         try {
             $callable();
         } catch (\Throwable $exception) {

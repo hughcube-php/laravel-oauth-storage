@@ -17,7 +17,6 @@ use HughCube\Laravel\ServiceSupport\LazyFacade;
  *
  * @method static Client client(string $name = null)
  * @method static Proxy makeProxy(string $appid, string $apptype, string $service, string $usertype)
- *
  * @method static null|array findByUser(string $appid, string $apptype, string $service, string $usertype, string $userid)
  * @method static null|array findByOpenId($appid, $apptype, $service, $usertype, $openid, $subOpenid = '')
  * @method static null|array deleteByUser(string $appid, string $apptype, string $service, string $usertype, string $userid)

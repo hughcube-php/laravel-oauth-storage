@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: hugh.li
  * Date: 2022/6/28
- * Time: 21:51
+ * Time: 21:51.
  */
 
 namespace HughCube\Laravel\OAuthStorage\Tests\Ots;

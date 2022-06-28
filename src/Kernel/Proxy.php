@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: hugh.li
  * Date: 2022/6/28
- * Time: 19:18
+ * Time: 19:18.
  */
 
 namespace HughCube\Laravel\OAuthStorage\Kernel;
@@ -101,6 +101,7 @@ class Proxy implements \HughCube\Laravel\OAuthStorage\Contracts\Proxy
         if (empty($attributes)) {
             return null;
         }
+
         return new User($attributes);
     }
 }
