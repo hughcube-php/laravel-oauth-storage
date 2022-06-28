@@ -4,15 +4,15 @@ return [
     'default' => 'default',
 
     /**
-     * default config
+     * default config.
      */
     'defaults' => [],
 
     'clients' => [
         'default' => [
-            'driver' => 'ots',
-            'connection' => 'ots',
-            'table' => 'oauth_users',
+            'driver'       => 'ots',
+            'connection'   => 'ots',
+            'table'        => 'oauth_users',
             'openid_index' => 'oauth_users_openid_index',
         ],
     ],

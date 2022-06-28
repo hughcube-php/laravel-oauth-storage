@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: hugh.li
  * Date: 2022/6/28
- * Time: 19:02
+ * Time: 19:02.
  */
 
 namespace HughCube\Laravel\OAuthStorage\Contracts;
@@ -11,7 +11,7 @@ namespace HughCube\Laravel\OAuthStorage\Contracts;
 interface Client
 {
     /**
-     * find user
+     * find user.
      */
     public function findByUser(
         string $appid,
@@ -22,7 +22,7 @@ interface Client
     ): ?array;
 
     /**
-     * find openid
+     * find openid.
      */
     public function findByOpenId(
         string $appid,
@@ -34,7 +34,7 @@ interface Client
     ): ?array;
 
     /**
-     * delete user
+     * delete user.
      */
     public function deleteByUser(
         string $appid,
@@ -45,8 +45,7 @@ interface Client
     );
 
     /**
-     * delete openid
-     *
+     * delete openid.
      */
     public function deleteByOpenId(
         string $appid,
@@ -58,7 +57,7 @@ interface Client
     );
 
     /**
-     * save
+     * save.
      */
     public function save(
         string $appid,
@@ -71,7 +70,7 @@ interface Client
     );
 
     /**
-     * proxy
+     * proxy.
      */
     public function makeProxy(
         string $appid,

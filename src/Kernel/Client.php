@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: hugh.li
  * Date: 2022/6/28
- * Time: 19:17
+ * Time: 19:17.
  */
 
 namespace HughCube\Laravel\OAuthStorage\Kernel;

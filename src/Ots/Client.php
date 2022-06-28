@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: hugh.li
  * Date: 2022/6/28
- * Time: 19:17
+ * Time: 19:17.
  */
 
 namespace HughCube\Laravel\OAuthStorage\Ots;
@@ -38,6 +38,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
 
     /**
      * @inheritDoc
+     *
      * @throws OTSClientException
      * @throws OTSServerException
      */
@@ -49,7 +50,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $userid
     ): ?array {
         $response = $this->connection->getRow([
-            'table_name' => $this->table,
+            'table_name'  => $this->table,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
@@ -65,6 +66,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
 
     /**
      * @inheritDoc
+     *
      * @throws OTSClientException
      * @throws OTSServerException
      */
@@ -77,9 +79,9 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $subOpenid = ''
     ): ?array {
         $response = $this->connection->getRange([
-            'table_name' => $this->openidIndex,
-            'max_versions' => 1,
-            'direction' => DirectionConst::CONST_FORWARD,
+            'table_name'                  => $this->openidIndex,
+            'max_versions'                => 1,
+            'direction'                   => DirectionConst::CONST_FORWARD,
             'inclusive_start_primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
@@ -100,7 +102,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
             ],
         ]);
 
-        foreach ($response['rows'] ?? [] as $row){
+        foreach ($response['rows'] ?? [] as $row) {
             return Ots::parseRow($row) ?: null;
         }
 
@@ -109,6 +111,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
 
     /**
      * @inheritDoc
+     *
      * @throws OTSClientException
      * @throws OTSServerException
      */
@@ -120,15 +123,15 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $userid
     ) {
         $response = $this->connection->deleteRow([
-            'table_name' => $this->table,
-            'condition' => RowExistenceExpectationConst::CONST_IGNORE,
+            'table_name'  => $this->table,
+            'condition'   => RowExistenceExpectationConst::CONST_IGNORE,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
                 ['service', strval($service)],
                 ['usertype', strval($usertype)],
                 ['userid', strval($userid)],
-            ]
+            ],
         ]);
 
         if (!isset($response['primary_key'], $response['attribute_columns'])) {
@@ -138,6 +141,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
 
     /**
      * @inheritDoc
+     *
      * @throws OTSClientException
      * @throws OTSServerException
      */
@@ -159,6 +163,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
 
     /**
      * @inheritDoc
+     *
      * @throws OTSClientException
      * @throws OTSServerException
      */
@@ -167,8 +172,8 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         $now = Carbon::now();
 
         $response = $this->connection->putRow([
-            'table_name' => $this->table,
-            'condition' => RowExistenceExpectationConst::CONST_EXPECT_NOT_EXIST,
+            'table_name'  => $this->table,
+            'condition'   => RowExistenceExpectationConst::CONST_EXPECT_NOT_EXIST,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
@@ -181,7 +186,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
                 ['sub_openid', strval($subOpenid ?: ''), ColumnTypeConst::CONST_STRING],
                 ['deleted_at', '', ColumnTypeConst::CONST_STRING],
                 ['created_at', $now->toRfc3339String(true), ColumnTypeConst::CONST_STRING],
-                ['updated_at', $now->toRfc3339String(true), ColumnTypeConst::CONST_STRING]
+                ['updated_at', $now->toRfc3339String(true), ColumnTypeConst::CONST_STRING],
             ],
         ]);
 
