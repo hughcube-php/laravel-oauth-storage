@@ -1,14 +1,14 @@
 <h1 align="center"> Laravel OAuth Storage </h1>
 
 <p>
-    <a href="https://github.com/hughcube-php/laravel-captcha-code/actions?query=workflow%3ATest">
-        <img src="https://github.com/hughcube-php/laravel-captcha-code/workflows/Test/badge.svg" alt="Test Actions status">
+    <a href="https://github.com/hughcube-php/laravel-oauth-storage/actions?query=workflow%3ATest">
+        <img src="https://github.com/hughcube-php/laravel-oauth-storage/workflows/Test/badge.svg" alt="Test Actions status">
     </a>
-    <a href="https://github.com/hughcube-php/laravel-captcha-code/actions?query=workflow%3ALint">
-        <img src="https://github.com/hughcube-php/laravel-captcha-code/workflows/Lint/badge.svg" alt="Lint Actions status">
+    <a href="https://github.com/hughcube-php/laravel-oauth-storage/actions?query=workflow%3ALint">
+        <img src="https://github.com/hughcube-php/laravel-oauth-storage/workflows/Lint/badge.svg" alt="Lint Actions status">
     </a>
-    <a href="https://styleci.io/repos/217659566">
-        <img src="https://github.styleci.io/repos/217659566/shield?branch=master" alt="StyleCI">
+    <a href="https://styleci.io/repos/508359907">
+        <img src="https://github.styleci.io/repos/508359907/shield?branch=master" alt="StyleCI">
     </a>
 </p>
 
