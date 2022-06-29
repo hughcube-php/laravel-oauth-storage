@@ -50,7 +50,7 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $userid
     ): ?array {
         $response = $this->connection->getRow([
-            'table_name'  => $this->table,
+            'table_name' => $this->table,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
@@ -79,19 +79,10 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $subOpenid = ''
     ): ?array {
         $response = $this->connection->getRange([
-            'table_name'                  => $this->openidIndex,
-            'max_versions'                => 1,
-            'direction'                   => DirectionConst::CONST_FORWARD,
+            'table_name' => $this->openidIndex,
+            'max_versions' => 1,
+            'direction' => DirectionConst::CONST_BACKWARD,
             'inclusive_start_primary_key' => [
-                ['appid', strval($appid)],
-                ['apptype', strval($apptype)],
-                ['service', strval($service)],
-                ['usertype', strval($usertype)],
-                ['openid', strval($openid)],
-                ['sub_openid', strval($subOpenid ?: '')],
-                ['userid', null, PrimaryKeyTypeConst::CONST_INF_MIN],
-            ],
-            'exclusive_end_primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
                 ['service', strval($service)],
@@ -100,12 +91,21 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
                 ['sub_openid', strval($subOpenid ?: '')],
                 ['userid', null, PrimaryKeyTypeConst::CONST_INF_MAX],
             ],
+            'exclusive_end_primary_key' => [
+                ['appid', strval($appid)],
+                ['apptype', strval($apptype)],
+                ['service', strval($service)],
+                ['usertype', strval($usertype)],
+                ['openid', strval($openid)],
+                ['sub_openid', strval($subOpenid ?: '')],
+                ['userid', null, PrimaryKeyTypeConst::CONST_INF_MIN],
+            ],
+            'limit' => 1,
         ]);
 
         foreach ($response['rows'] ?? [] as $row) {
             return Ots::parseRow($row) ?: null;
         }
-
         return null;
     }
 
@@ -123,8 +123,8 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         string $userid
     ) {
         $response = $this->connection->deleteRow([
-            'table_name'  => $this->table,
-            'condition'   => RowExistenceExpectationConst::CONST_IGNORE,
+            'table_name' => $this->table,
+            'condition' => RowExistenceExpectationConst::CONST_IGNORE,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],
@@ -172,8 +172,8 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
         $now = Carbon::now();
 
         $response = $this->connection->putRow([
-            'table_name'  => $this->table,
-            'condition'   => RowExistenceExpectationConst::CONST_EXPECT_NOT_EXIST,
+            'table_name' => $this->table,
+            'condition' => RowExistenceExpectationConst::CONST_EXPECT_NOT_EXIST,
             'primary_key' => [
                 ['appid', strval($appid)],
                 ['apptype', strval($apptype)],

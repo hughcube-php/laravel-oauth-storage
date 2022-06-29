@@ -8,6 +8,7 @@
 
 namespace HughCube\Laravel\OAuthStorage\Tests\Ots;
 
+use Aliyun\OTS\OTSServerException;
 use HughCube\Laravel\OAuthStorage\Contracts\Client;
 use HughCube\Laravel\OAuthStorage\OAuthStorage;
 use HughCube\Laravel\OAuthStorage\Tests\TestCase;
@@ -115,6 +116,13 @@ class ClientTest extends TestCase
                 $openid = $this->randomString(),
                 $subOpenid = $this->randomString()
             );
+
+            $exception = null;
+            try {
+                $this->getClient()->save($appid, $apptype, $service, $usertype, $userid, $openid, $subOpenid);
+            } catch (OTSServerException $exception) {
+            }
+            $this->assertInstanceOf(OTSServerException::class, $exception);
 
             $this->assertArrayHasKey(
                 'appid',
