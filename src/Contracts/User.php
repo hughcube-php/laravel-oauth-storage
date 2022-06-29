@@ -67,51 +67,58 @@ interface User
      */
     public function getExtras(): array;
 
-
     /**
-     * @param  string  $appId
+     * @param string $appId
+     *
      * @return $this
      */
     public function setAppid(string $appId): User;
 
     /**
-     * @param  string  $appType
+     * @param string $appType
+     *
      * @return $this
      */
     public function setAppType(string $appType): User;
 
     /**
-     * @param  string  $service
+     * @param string $service
+     *
      * @return $this
      */
     public function setService(string $service): User;
 
     /**
-     * @param  string  $userType
+     * @param string $userType
+     *
      * @return $this
      */
     public function setUserType(string $userType): User;
 
     /**
-     * @param  string  $userId
+     * @param string $userId
+     *
      * @return $this
      */
     public function setUserId(string $userId): User;
 
     /**
-     * @param  string  $openId
+     * @param string $openId
+     *
      * @return $this
      */
     public function setOpenId(string $openId): User;
 
     /**
-     * @param  string  $subOpenId
+     * @param string $subOpenId
+     *
      * @return $this
      */
     public function setSubOpenId(string $subOpenId): User;
 
     /**
-     * @param  array  $extras
+     * @param array $extras
+     *
      * @return $this
      */
     public function setExtras(array $extras): User;
@@ -167,7 +174,8 @@ interface User
     public function getWeChatQrSceneStr(): ?string;
 
     /**
-     * @param  integer  $state
+     * @param int $state
+     *
      * @return User
      */
     public function setTokenState(int $state): User;

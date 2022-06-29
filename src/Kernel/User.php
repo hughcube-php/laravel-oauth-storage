@@ -84,6 +84,7 @@ class User implements UserContract
     public function getDeletedAt(): ?Carbon
     {
         $date = $this->attributes['deleted_at'] ?? null;
+
         return empty($date) ? null : Carbon::parse($date);
     }
 
@@ -93,6 +94,7 @@ class User implements UserContract
     public function getCreatedAt(): ?Carbon
     {
         $date = $this->attributes['created_at'] ?? null;
+
         return empty($date) ? null : Carbon::parse($date);
     }
 
@@ -102,6 +104,7 @@ class User implements UserContract
     public function getUpdatedAt(): ?Carbon
     {
         $date = $this->attributes['updated_at'] ?? null;
+
         return empty($date) ? null : Carbon::parse($date);
     }
 
@@ -116,6 +119,7 @@ class User implements UserContract
         }
 
         $items = json_decode($extras, true);
+
         return is_array($items) ? $items : [];
     }
 
@@ -205,6 +209,7 @@ class User implements UserContract
     public function setAppid(string $appId): UserContract
     {
         $this->attributes['appid'] = $appId;
+
         return $this;
     }
 
@@ -214,6 +219,7 @@ class User implements UserContract
     public function setAppType(string $appType): UserContract
     {
         $this->attributes['apptype'] = $appType;
+
         return $this;
     }
 
@@ -223,6 +229,7 @@ class User implements UserContract
     public function setService(string $service): UserContract
     {
         $this->attributes['service'] = $service;
+
         return $this;
     }
 
@@ -232,6 +239,7 @@ class User implements UserContract
     public function setUserType(string $userType): UserContract
     {
         $this->attributes['usertype'] = $userType;
+
         return $this;
     }
 
@@ -241,6 +249,7 @@ class User implements UserContract
     public function setUserId(string $userId): UserContract
     {
         $this->attributes['userid'] = $userId;
+
         return $this;
     }
 
@@ -250,6 +259,7 @@ class User implements UserContract
     public function setOpenId(string $openId): UserContract
     {
         $this->attributes['openid'] = $openId;
+
         return $this;
     }
 
@@ -259,6 +269,7 @@ class User implements UserContract
     public function setSubOpenId(string $subOpenId): UserContract
     {
         $this->attributes['sub_openid'] = $subOpenId;
+
         return $this;
     }
 
@@ -268,6 +279,7 @@ class User implements UserContract
     public function setExtras(array $extras): UserContract
     {
         $this->attributes['extras'] = $extras;
+
         return $this;
     }
 
@@ -277,6 +289,7 @@ class User implements UserContract
     public function setTokenState(int $state): UserContract
     {
         $this->tokenState = $state;
+
         return $this;
     }
 

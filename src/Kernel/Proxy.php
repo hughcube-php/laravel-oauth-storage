@@ -120,6 +120,7 @@ class Proxy implements \HughCube\Laravel\OAuthStorage\Contracts\Proxy
         if (empty($attributes)) {
             return null;
         }
+
         return new User($attributes);
     }
 }
