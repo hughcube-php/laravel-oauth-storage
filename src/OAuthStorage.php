@@ -17,9 +17,7 @@ use HughCube\Laravel\ServiceSupport\LazyFacade;
  * Class Package.
  *
  * @method static Client client(string $name = null)
- *
  * @method static Proxy makeProxy(string $appid, string $apptype, string $service, string $usertype)
- *
  * @method static mixed createByUser(User $user)
  * @method static mixed create(string $appid, string $apptype, string $service, string $usertype, string $userid, string $openid, string $subOpenid = '', array $extras = [])
  * @method static mixed newUser(string $appid = null, string $apptype = null, string $service = null, string $usertype = null, string $userid = null, string $openid = null, string $subOpenid = '', array $extras = [])

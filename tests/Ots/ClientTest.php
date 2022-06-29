@@ -32,17 +32,17 @@ class ClientTest extends TestCase
                 $openid = $this->randomString(),
                 $subOpenid = $this->randomString(),
                 [
-                    "subscribe" => 1,
-                    "openid" => $wxOpenid = "o6_bmjrPTlm6_2sgVt7hMZOPfL2M",
-                    "language" => "zh_CN",
-                    "subscribe_time" => 1382694957,
-                    "unionid" => " o6_bmasdasdsad6_2sgVt7hMZOPfL",
-                    "remark" => "",
-                    "groupid" => 0,
-                    "tagid_list" => [128, 2],
-                    "subscribe_scene" => "ADD_SCENE_QR_CODE",
-                    "qr_scene" => 98765,
-                    "qr_scene_str" => ""
+                    'subscribe'       => 1,
+                    'openid'          => $wxOpenid = 'o6_bmjrPTlm6_2sgVt7hMZOPfL2M',
+                    'language'        => 'zh_CN',
+                    'subscribe_time'  => 1382694957,
+                    'unionid'         => ' o6_bmasdasdsad6_2sgVt7hMZOPfL',
+                    'remark'          => '',
+                    'groupid'         => 0,
+                    'tagid_list'      => [128, 2],
+                    'subscribe_scene' => 'ADD_SCENE_QR_CODE',
+                    'qr_scene'        => 98765,
+                    'qr_scene_str'    => '',
                 ]
             );
 
@@ -137,6 +137,7 @@ class ClientTest extends TestCase
             );
 
             $exception = null;
+
             try {
                 $this->getClient()->create($appid, $apptype, $service, $usertype, $userid, $openid, $subOpenid);
             } catch (OTSServerException $exception) {
