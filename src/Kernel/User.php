@@ -13,137 +13,278 @@ use HughCube\Laravel\OAuthStorage\Contracts\User as UserContract;
 
 class User implements UserContract
 {
-    /**
-     * @var string
-     */
-    protected $appid;
+    protected $attributes = [];
 
-    /**
-     * @var string
-     */
-    protected $apptype;
-
-    /**
-     * @var string
-     */
-    protected $service;
-
-    /**
-     * @var string
-     */
-    protected $usertype;
-
-    /**
-     * @var string
-     */
-    protected $userid;
-
-    /**
-     * @var string
-     */
-    protected $openid;
-
-    /**
-     * @var string
-     */
-    protected $sub_openid;
-
-    /**
-     * @var string
-     */
-    protected $deleted_at;
-
-    /**
-     * @var string
-     */
-    protected $created_at;
-
-    /**
-     * @var string
-     */
-    protected $updated_at;
+    protected $tokenState;
 
     public function __construct($attributes = [])
     {
+        $this->attributes = $attributes;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getAppid(): string
+    public function getAppid(): ?string
     {
-        return $this->appid;
+        return $this->attributes['appid'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getAppType(): string
+    public function getAppType(): ?string
     {
-        return $this->apptype;
+        return $this->attributes['apptype'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getService(): string
+    public function getService(): ?string
     {
-        return $this->service;
+        return $this->attributes['service'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getUserType(): string
+    public function getUserType(): ?string
     {
-        return $this->usertype;
+        return $this->attributes['usertype'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getUserId(): string
+    public function getUserId(): ?string
     {
-        return $this->userid;
+        return $this->attributes['userid'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getOpenId(): string
+    public function getOpenId(): ?string
     {
-        return $this->openid;
+        return $this->attributes['openid'] ?? null;
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getSubOpenId(): string
+    public function getSubOpenId(): ?string
     {
-        return $this->sub_openid ?: '';
+        return $this->attributes['sub_openid'] ?? null;
     }
 
     /**
-     * @return null|Carbon
+     * @inheritDoc
      */
     public function getDeletedAt(): ?Carbon
     {
-        return empty($this->deleted_at) ? null : Carbon::parse($this->deleted_at);
+        $date = $this->attributes['deleted_at'] ?? null;
+        return empty($date) ? null : Carbon::parse($date);
     }
 
     /**
-     * @return null|Carbon
+     * @inheritDoc
      */
     public function getCreatedAt(): ?Carbon
     {
-        return empty($this->created_at) ? null : Carbon::parse($this->created_at);
+        $date = $this->attributes['created_at'] ?? null;
+        return empty($date) ? null : Carbon::parse($date);
     }
 
     /**
-     * @return null|Carbon
+     * @inheritDoc
      */
     public function getUpdatedAt(): ?Carbon
     {
-        return empty($this->updated_at) ? null : Carbon::parse($this->updated_at);
+        $date = $this->attributes['updated_at'] ?? null;
+        return empty($date) ? null : Carbon::parse($date);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getExtras(): array
+    {
+        $extras = $this->attributes['extras'] ?? null;
+        if (empty($extras)) {
+            return [];
+        }
+
+        $items = json_decode($extras, true);
+        return is_array($items) ? $items : [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatSubscribe(): ?int
+    {
+        return $this->getExtras()['subscribe'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatOpenid(): ?string
+    {
+        return $this->getExtras()['openid'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatLanguage(): ?string
+    {
+        return $this->getExtras()['language'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatSubscribeTime(): ?int
+    {
+        return $this->getExtras()['subscribe_time'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatUnionid(): ?string
+    {
+        return $this->getExtras()['unionid'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatGroupId(): ?int
+    {
+        return $this->getExtras()['groupid'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatTagidList(): ?array
+    {
+        return $this->getExtras()['tagid_list'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatSubscribeScene(): ?string
+    {
+        return $this->getExtras()['subscribe_scene'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatQrScene(): ?int
+    {
+        return $this->getExtras()['qr_scene'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getWeChatQrSceneStr(): ?string
+    {
+        return $this->getExtras()['qr_scene_str'] ?? null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setAppid(string $appId): UserContract
+    {
+        $this->attributes['appid'] = $appId;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setAppType(string $appType): UserContract
+    {
+        $this->attributes['apptype'] = $appType;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setService(string $service): UserContract
+    {
+        $this->attributes['service'] = $service;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setUserType(string $userType): UserContract
+    {
+        $this->attributes['usertype'] = $userType;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setUserId(string $userId): UserContract
+    {
+        $this->attributes['userid'] = $userId;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setOpenId(string $openId): UserContract
+    {
+        $this->attributes['openid'] = $openId;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setSubOpenId(string $subOpenId): UserContract
+    {
+        $this->attributes['sub_openid'] = $subOpenId;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setExtras(array $extras): UserContract
+    {
+        $this->attributes['extras'] = $extras;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setTokenState(int $state): UserContract
+    {
+        $this->tokenState = $state;
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTokenState(): ?int
+    {
+        return $this->tokenState;
     }
 }

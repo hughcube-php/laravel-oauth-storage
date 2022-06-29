@@ -59,14 +59,34 @@ interface Client
     /**
      * save.
      */
-    public function save(
+    public function create(
         string $appid,
         string $apptype,
         string $service,
         string $usertype,
         string $userid,
         string $openid,
-        string $subOpenid = ''
+        string $subOpenid = '',
+        array $extras = []
+    );
+
+    /**
+     * save.
+     */
+    public function createByUser(User $user);
+
+    /**
+     * save.
+     */
+    public function newUser(
+        string $appid = null,
+        string $apptype = null,
+        string $service = null,
+        string $usertype = null,
+        string $userid = null,
+        string $openid = null,
+        string $subOpenid = '',
+        array $extras = []
     );
 
     /**

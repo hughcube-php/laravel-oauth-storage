@@ -23,27 +23,45 @@ class ClientTest extends TestCase
     public function testFindByUser()
     {
         $this->assertNoException(function () {
-            $this->getClient()->save(
+            $this->getClient()->create(
                 $appid = $this->randomString(),
                 $apptype = $this->randomString(),
                 $service = $this->randomString(),
                 $usertype = $this->randomString(),
                 $userid = $this->randomString(),
                 $openid = $this->randomString(),
-                $subOpenid = $this->randomString()
+                $subOpenid = $this->randomString(),
+                [
+                    "subscribe" => 1,
+                    "openid" => $wxOpenid = "o6_bmjrPTlm6_2sgVt7hMZOPfL2M",
+                    "language" => "zh_CN",
+                    "subscribe_time" => 1382694957,
+                    "unionid" => " o6_bmasdasdsad6_2sgVt7hMZOPfL",
+                    "remark" => "",
+                    "groupid" => 0,
+                    "tagid_list" => [128, 2],
+                    "subscribe_scene" => "ADD_SCENE_QR_CODE",
+                    "qr_scene" => 98765,
+                    "qr_scene_str" => ""
+                ]
             );
 
             $this->assertSame(
                 $userid,
                 $this->getClient()->findByUser($appid, $apptype, $service, $usertype, $userid)['userid']
             );
+
+            $user = $this->getClient()
+                ->makeProxy($appid, $apptype, $service, $usertype)
+                ->findByUser($userid);
+            $this->assertSame($wxOpenid, $user->getWeChatOpenid());
         });
     }
 
     public function testFindByOpenId()
     {
         $this->assertNoException(function () {
-            $this->getClient()->save(
+            $this->getClient()->create(
                 $appid = $this->randomString(),
                 $apptype = $this->randomString(),
                 $service = $this->randomString(),
@@ -63,7 +81,7 @@ class ClientTest extends TestCase
     public function testDeleteByUser()
     {
         $this->assertNoException(function () {
-            $this->getClient()->save(
+            $this->getClient()->create(
                 $appid = $this->randomString(),
                 $apptype = $this->randomString(),
                 $service = $this->randomString(),
@@ -85,7 +103,7 @@ class ClientTest extends TestCase
     public function testDeleteByOpenId()
     {
         $this->assertNoException(function () {
-            $this->getClient()->save(
+            $this->getClient()->create(
                 $appid = $this->randomString(),
                 $apptype = $this->randomString(),
                 $service = $this->randomString(),
@@ -107,19 +125,20 @@ class ClientTest extends TestCase
     public function testSave()
     {
         $this->assertNoException(function () {
-            $this->getClient()->save(
+            $this->getClient()->create(
                 $appid = $this->randomString(),
                 $apptype = $this->randomString(),
                 $service = $this->randomString(),
                 $usertype = $this->randomString(),
                 $userid = $this->randomString(),
                 $openid = $this->randomString(),
-                $subOpenid = $this->randomString()
+                $subOpenid = $this->randomString(),
+                $attributes = ['test1' => 'test1', 'test2' => 1, 'test3' => false, 'test5' => 1.09]
             );
 
             $exception = null;
             try {
-                $this->getClient()->save($appid, $apptype, $service, $usertype, $userid, $openid, $subOpenid);
+                $this->getClient()->create($appid, $apptype, $service, $usertype, $userid, $openid, $subOpenid);
             } catch (OTSServerException $exception) {
             }
             $this->assertInstanceOf(OTSServerException::class, $exception);

@@ -33,5 +33,10 @@ interface Proxy
     /**
      * save.
      */
-    public function save(string $userid, string $openid, string $subOpenid = '');
+    public function create(string $userid, string $openid, string $subOpenid = '', array $extras = []);
+
+    /**
+     * @save user
+     */
+    public function newUser(string $userid, string $openid, string $subOpenid = '', array $extras = []): User;
 }

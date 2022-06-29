@@ -10,13 +10,19 @@ namespace HughCube\Laravel\OAuthStorage;
 
 use HughCube\Laravel\OAuthStorage\Contracts\Client;
 use HughCube\Laravel\OAuthStorage\Contracts\Proxy;
+use HughCube\Laravel\OAuthStorage\Contracts\User;
 use HughCube\Laravel\ServiceSupport\LazyFacade;
 
 /**
  * Class Package.
  *
  * @method static Client client(string $name = null)
+ *
  * @method static Proxy makeProxy(string $appid, string $apptype, string $service, string $usertype)
+ *
+ * @method static mixed createByUser(User $user)
+ * @method static mixed create(string $appid, string $apptype, string $service, string $usertype, string $userid, string $openid, string $subOpenid = '', array $extras = [])
+ * @method static mixed newUser(string $appid = null, string $apptype = null, string $service = null, string $usertype = null, string $userid = null, string $openid = null, string $subOpenid = '', array $extras = [])
  * @method static null|array findByUser(string $appid, string $apptype, string $service, string $usertype, string $userid)
  * @method static null|array findByOpenId($appid, $apptype, $service, $usertype, $openid, $subOpenid = '')
  * @method static null|array deleteByUser(string $appid, string $apptype, string $service, string $usertype, string $userid)

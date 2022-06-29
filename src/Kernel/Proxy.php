@@ -83,16 +83,35 @@ class Proxy implements \HughCube\Laravel\OAuthStorage\Contracts\Proxy
         );
     }
 
-    public function save(string $userid, string $openid, string $subOpenid = '')
+    public function create(string $userid, string $openid, string $subOpenid = '', array $extras = [])
     {
-        $this->client->save(
+        $this->client->create(
             $this->appid,
             $this->apptype,
             $this->service,
             $this->usertype,
             $userid,
             $openid,
-            $subOpenid
+            $subOpenid,
+            $extras
+        );
+    }
+
+    public function newUser(
+        string $userid = null,
+        string $openid = null,
+        string $subOpenid = '',
+        array $extras = []
+    ): UserContract {
+        return $this->client->newUser(
+            $this->appid,
+            $this->apptype,
+            $this->service,
+            $this->usertype,
+            $userid,
+            $openid,
+            $subOpenid,
+            $extras
         );
     }
 
@@ -101,7 +120,6 @@ class Proxy implements \HughCube\Laravel\OAuthStorage\Contracts\Proxy
         if (empty($attributes)) {
             return null;
         }
-
         return new User($attributes);
     }
 }

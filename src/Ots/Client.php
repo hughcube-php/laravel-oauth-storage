@@ -167,8 +167,16 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
      * @throws OTSClientException
      * @throws OTSServerException
      */
-    public function save($appid, $apptype, $service, $usertype, $userid, $openid, $subOpenid = '')
-    {
+    public function create(
+        string $appid,
+        string $apptype,
+        string $service,
+        string $usertype,
+        string $userid,
+        string $openid,
+        string $subOpenid = '',
+        array $extras = []
+    ) {
         $now = Carbon::now();
 
         $response = $this->connection->putRow([
@@ -184,10 +192,11 @@ class Client extends \HughCube\Laravel\OAuthStorage\Kernel\Client
             'attribute_columns' => [
                 ['openid', strval($openid), ColumnTypeConst::CONST_STRING],
                 ['sub_openid', strval($subOpenid ?: ''), ColumnTypeConst::CONST_STRING],
+                ['extras', json_encode($extras), ColumnTypeConst::CONST_STRING],
                 ['deleted_at', '', ColumnTypeConst::CONST_STRING],
                 ['created_at', $now->toRfc3339String(true), ColumnTypeConst::CONST_STRING],
                 ['updated_at', $now->toRfc3339String(true), ColumnTypeConst::CONST_STRING],
-            ],
+            ]
         ]);
 
         if (!isset($response['primary_key'], $response['attribute_columns'])) {
